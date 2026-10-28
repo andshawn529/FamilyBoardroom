@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Family Boardroom</title>
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent: #2563eb;
+            --accent-light: #eff6ff;
+            --success: #10b981;
+            --success-light: #ecfdf5;
+            --border: #e2e8f0;
+            --radius: 16px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .phone-frame {
+            width: 100%;
+            max-width: 480px;
+            min-height: 100vh;
+            background: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        header {
+            padding: 24px 20px 16px;
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border);
+        }
+
+        header h1 {
+            margin: 0 0 4px 0;
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            margin: 0;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            padding-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            margin-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .insight-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 18px;
+            margin-bottom: 14px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .insight-tag {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--accent);
+            background: var(--accent-light);
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .insight-text {
+            font-size: 15px;
+            line-height: 1.5;
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        .accountability-box {
+            background: var(--success-light);
+            border: 1px solid #a7f3d0;
+            border-radius: var(--radius);
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+
+        .accountability-box h3 {
+            margin: 0 0 8px 0;
+            font-size: 15px;
+            color: #065f46;
+        }
+
+        .accountability-box p {
+            margin: 0 0 12px 0;
+            font-size: 14px;
+            color: #047857;
+            line-height: 1.4;
+            font-style: italic;
+        }
+
+        .settings-bar {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .settings-bar label {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        select {
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg-color);
+            font-size: 13px;
+            color: var(--text-primary);
+            outline: none;
+        }
+
+        .notepad-container {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 18px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 140px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            background: var(--bg-color);
+            color: var(--text-primary);
+            box-sizing: border-box;
+            outline: none;
+            line-height: 1.5;
+        }
+
+        textarea:focus {
+            border-color: var(--accent);
+        }
+
+        .save-indicator {
+            font-size: 12px;
+            color: var(--success);
+            margin-top: 8px;
+            text-align: right;
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+    </style>
+</head>
+<body>
+
+<div class="phone-frame">
+    <header>
+        <h1>The Family Boardroom</h1>
+        <p>Break the churn. Build intentional family outcomes.</p>
+    </header>
+
+    <div class="content">
+        <!-- Delivery Time Settings -->
+        <div class="settings-bar">
+            <label for="deliveryTime">Daily Drop Time</label>
+            <select id="deliveryTime">
+                <option value="06:00">06:00 AM (Morning Coffee)</option>
+                <option value="12:00" selected>12:00 PM (Midday Pause)</option>
+                <option value="18:00">06:00 PM (Evening Debrief)</option>
+                <option value="21:00">09:00 PM (Wind Down)</option>
+            </select>
+        </div>
+
+        <!-- Weekly Accountability Mirror -->
+        <div id="accountabilitySection" style="display: none;">
+            <div class="section-title" style="margin-top: 0;">Weekly Accountability Mirror</div>
+            <div class="accountability-box">
+                <h3>Looking back at your previous notes:</h3>
+                <p id="pastNotesDisplay">"No previous notes recorded yet."</p>
+                <div style="font-size: 13px; font-weight: 600; color: #065f46;">
+                    Did you execute on your desired outcomes this week, or did the daily grind take over?
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title">
+            <span>Today's 3 Leadership Insights</span>
+            <span id="dateDisplay"></span>
+        </div>
+
+        <div id="insightsContainer">
+            <!-- Dynamically populated -->
+        </div>
+
+        <div class="section-title">
+            <span>Weekly Mental White Space & Desires</span>
+        </div>
+        <div class="notepad-container">
+            <p style="margin: 0 0 10px 0; font-size: 13px; color: var(--text-secondary);">
+                Capture what matters, eliminate the noise, and state 1-2 actionable family outcomes for this week.
+            </p>
+            <textarea id="weeklyNotes" placeholder="What is the noise we need to cut through this week? What does a successful family win look like by Sunday?"></textarea>
+            <div id="saveStatus" class="save-indicator">Saved locally ✓</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Database of 100 Family Leadership items (Sample loaded here)
+    const database = [
+        { category: "Vision & North Star", type: "Strategy", text: "Treat family culture like a startup product: if you don't design it intentionally, default habits and external noise will design it for you." },
+        { category: "Rhythm & Margin", type: "Insight", text: "The 'churn' thrives in packed schedules. Protect at least one unprogrammed evening per week where nothing is required and anything is possible." },
+        { category: "Psychological Safety", type: "Lens", text: "Instead of asking 'How was your day?', ask 'What was hard today that you didn't tell anyone about?' and listen without immediately fixing." },
+        { category: "Culture & Environment", type: "Strategy", text: "Establish an immutable family ritual—a Friday walk, a Sunday breakfast prep—that anchors stability regardless of how chaotic work gets." },
+        { category: "Execution", type: "Micro-Action", text: "Identify one recurring household argument. Apply a systems fix (a shared checklist, an automated calendar invite) rather than relying on willpower." },
+        { category: "Vision & North Star", type: "Quote", text: "Children are not a distraction from more important work. They *are* the most important work." },
+        { category: "Rhythm & Margin", type: "Lens", text: "Busyness is often a form of laziness—lazy thinking and a refusal to choose what truly matters over what is merely urgent." },
+        { category: "Psychological Safety", type: "Strategy", text: "Apologize to your children when you overreact. It models high emotional intelligence and rebuilds trust instantly." },
+        { category: "Culture & Environment", type: "Insight", text: "Energy is finite. Protect your family prime-time energy from being entirely drained by professional obligations." },
+        { category: "Execution", type: "Micro-Action", text: "Run a 10-minute 'Sunday Sync' with your partner: review the upcoming week's friction points, logistics, and one intentional family date." }
+    ];
+
+    // Render daily insights based on day of year
+    function getDailyInsights() {
+        const now = new Date();
+        const start = new Date(now.getFullYear(), 0, 0);
+        const diff = (now - start) + ((start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000);
+        const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24));
+        
+        document.getElementById('dateDisplay').innerText = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+
+        const container = document.getElementById('insightsContainer');
+        container.innerHTML = '';
+
+        for (let i = 0; i < 3; i++) {
+            const index = (dayOfYear + i * 7) % database.length;
+            const item = database[index];
+
+            const card = document.createElement('div');
+            card.className = 'insight-card';
+            card.innerHTML = `
+                <span class="insight-tag">${item.category} • ${item.type}</span>
+                <p class="insight-text">"${item.text}"</p>
+            `;
+            container.appendChild(card);
+        }
+    }
+
+    // Handle LocalStorage, Auto-saving, and Accountability Mirror
+    const notepad = document.getElementById('weeklyNotes');
+    const saveStatus = document.getElementById('saveStatus');
+    const accountabilitySection = document.getElementById('accountabilitySection');
+    const pastNotesDisplay = document.getElementById('pastNotesDisplay');
+
+    const savedNotes = localStorage.getItem('family_boardroom_notes');
+    const lastSavedWeek = localStorage.getItem('family_boardroom_week');
+    
+    const currentWeekNumber = Math.getWeekNumber ? Math.getWeekNumber(new Date()) : getISOWeek(new Date());
+
+    if (savedNotes) {
+        notepad.value = savedNotes;
+        // If there are previous notes from a past session, display them in the accountability mirror
+        pastNotesDisplay.innerText = `"${savedNotes}"`;
+        accountabilitySection.style.display = 'block';
+    }
+
+    let timeout;
+    notepad.addEventListener('input', () => {
+        clearTimeout(timeout);
+        localStorage.setItem('family_boardroom_notes', notepad.value);
+        localStorage.setItem('family_boardroom_week', currentWeekNumber);
+        saveStatus.style.opacity = '1';
+        timeout = setTimeout(() => {
+            saveStatus.style.opacity = '0';
+        }, 2000);
+    });
+
+    function getISOWeek(d) {
+        d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+        d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay()||7));
+        var yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
+        return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+    }
+
+    getDailyInsights();
+</script>
+
+</body>
+</html>
