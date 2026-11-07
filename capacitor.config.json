@@ -1,0 +1,6 @@
+{
+  "appId": "com.familyboardroom.app",
+  "appName": "Family Boardroom",
+  "webDir": ".",
+  "bundledWebRuntime": false
+}
